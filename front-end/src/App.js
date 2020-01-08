@@ -1,25 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import Login from "./components/Login";
+import PrivateRoute from "./components/PrivateRoute";
+import TicketViews from "./views/TicketViews";
+import Registration from "./components/Registration";
+import TicketForm from "./components/Tickets/TicketForm";
+import TicketCard from "./components/Tickets/TicketCard";
+import Edit from "./components/Tickets/Edit";
+import MyTickets from "./components/Tickets/MyTickets";
+import HomePage from "./components/HomePage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <NavBar />
+        <Route path="/" exact component={HomePage} />
+        <Route exact path="/Login" exact component={Login} />
+        <PrivateRoute
+          path="/tickets/:id"
+          exact
+          component={props => <TicketCard {...props} />}
+        />
+        <PrivateRoute
+          path="/new-ticket"
+          component={props => <TicketForm {...props} />}
+        />
+        <PrivateRoute path="/my-tickets" component={MyTickets} />
+        <PrivateRoute path="/edit/:id" component={Edit} />
+        <PrivateRoute exact path="/tickets" component={TicketViews} />
+        <Route path="/Registration" component={Registration} />
+    </Router>
   );
 }
 
