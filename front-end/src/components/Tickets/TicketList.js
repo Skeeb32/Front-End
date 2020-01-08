@@ -17,10 +17,11 @@ class TicketList extends React.Component {
   };
 
   render() {
+    console.log(this.props.tickets);
     return (
       <Dashboard loggedUser={this.props.user}>
         <ItemDiv>
-          {this.props.tickets.map(ticket => (
+          {this.props.tickets && Array.from(this.props.tickets).map(ticket => (
             <TicketItem
               key={ticket.id}
               id={ticket.id}
