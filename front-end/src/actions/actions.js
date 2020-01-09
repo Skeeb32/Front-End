@@ -50,6 +50,7 @@ export const getData = () => dispatch => {
   axiosWithAuth()
     .get(`https://devdesk2-backend.herokuapp.com/api/tickets`)
     .then(res => {
+      console.log(res.data)
       dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -180,15 +181,63 @@ export const signup = user => dispatch => {
     });
 };
 
-export const GET_USER = "GET_USER";
-export const GET_USER_FAIL = "GET_USER_FAIL";
-export const getUser = id => dispatch => {
+// export const GET_USER = "GET_USER";
+// export const GET_USER_FAIL = "GET_USER_FAIL";
+// export const getUser = id => dispatch => {
+//   axiosWithAuth()
+//     .get(`https://devdesk2-backend.herokuapp.com/api/user/register${id}`)
+//     .then(res => {
+//       dispatch({ type: GET_USER, payload: res.data.username });
+//     })
+//     .catch(err => {
+//       dispatch({ type: GET_USER_FAIL, payload: err });
+//     });
+// };
+
+
+// Action to fetch list of categories available
+
+export const FETCH_CATEGORIES_START = "FETCH_CATEGORIES_START";
+export const FETCH_CATEGORIES_SUCCESS = "FETCH_CATEGORIES_SUCCESS";
+export const FETCH_CATEGORIES_FAIL = "FETCH_CATEGORIES_FAIL";
+export const getCategories = () => dispatch => {
+  dispatch({ type: FETCH_CATEGORIES_START });
   axiosWithAuth()
-    .get(`https://devdesk2-backend.herokuapp.com/api/user/register${id}`)
+    .get(`https://devdesk2-backend.herokuapp.com/api/tickets/categories`)
     .then(res => {
-      dispatch({ type: GET_USER, payload: res.data.username });
+      dispatch({ type: FETCH_CATEGORIES_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: GET_USER_FAIL, payload: err });
+      dispatch({ type: FETCH_CATEGORIES_FAIL, payload: err });
+    });
+};
+
+export const FETCH_PRIORITIES_START = "FETCH_PRIORITIES_START";
+export const FETCH_PRIORITIES_SUCCESS = "FETCH_PRIORITIES_SUCCESS";
+export const FETCH_PRIORITIES_FAIL = "FETCH_PRIORITIES_FAIL";
+export const getPriority = () => dispatch => {
+  dispatch({ type: FETCH_PRIORITIES_START });
+  axiosWithAuth()
+    .get(`https://devdesk2-backend.herokuapp.com/api/tickets/priorities/:id`)
+    .then(res => {
+      dispatch({ type: FETCH_PRIORITIES_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: FETCH_PRIORITIES_FAIL, payload: err });
+    });
+};
+
+export const FETCH_STATUS_START = "FETCH_STATUS_START";
+export const FETCH_STATUS_SUCCESS = "FETCH_STATUS_SUCCESS";
+export const FETCH_STATUS_FAIL = "FETCH_STATUS_FAIL";
+export const getStatus = () => dispatch => {
+  dispatch({ type: FETCH_STATUS_START });
+  axiosWithAuth()
+    .get(`https://devdesk2-backend.herokuapp.com/api/tickets/status`)
+    .then(res => {
+      dispatch({ type: FETCH_STATUS_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: FETCH_STATUS_FAIL, payload: err });
     });
 };

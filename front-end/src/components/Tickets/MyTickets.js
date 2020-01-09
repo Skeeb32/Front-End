@@ -1,23 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
-
 import { deleteTicket } from "../../actions/actions";
 import Dashboard from "../Dashboard/Dashboard";
 import { ItemDiv } from "../../hooks/index";
 import TicketItem from "./TicketItem";
 
 const test = props => {
-  const ownedTickets = props.tickets.filter(
-    ticket => ticket.user_id === props.user.user_id
+  console.log(Array.from(props.tickets.tickets))
+  Array.from(props.tickets.tickets).map(ticket => console.log(ticket) )
+  const ownedTickets = Array.from(props.tickets.tickets).filter(
+    ticket => 
+    ticket.user_id === props.user.id
   );
-  const claimedTickets = props.tickets.filter(
+  const claimedTickets = Array.from(props.tickets).filter(
     ticket => ticket.assigned_user === props.user.user_id
-  );
-  if (props.user.isAdmin) {
+  ); 
+  if (props.user && props.user.isAdmin) {
     return (
       <Dashboard>
         <ItemDiv>
-          {claimedTickets.map(ticket => (
+         {props.tickets && Array.from(props.tickets.tickets).map(ticket => (
             <TicketItem
               key={ticket.id}
               id={ticket.id}
@@ -44,11 +46,11 @@ const test = props => {
               id={ticket.id}
               ticket={ticket}
               title={ticket.title}
-              category={ticket.category}
+              // category={ticket.category}
               createdBy={ticket.user_id}
-              assigned={ticket.assigned}
-              resolved={ticket.resolved}
-              assignedUser={ticket.assigned_user}
+              // assigned={ticket.assigned}
+              // resolved={ticket.resolved}
+              // assignedUser={ticket.assigned_user}
               description={ticket.description}
             />
           ))}
@@ -57,7 +59,9 @@ const test = props => {
     );
   }
 };
-
+// const newComponent = props => {
+//   return <h1>New Component</h1>
+// }
 const mapStateToProps = state => {
   return {
     tickets: state.tickets,
