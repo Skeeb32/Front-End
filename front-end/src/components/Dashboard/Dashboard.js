@@ -1,14 +1,20 @@
 import React, { useEffect }from "react";
-import { useDispatch}  from "react-redux";
-import { getCategories } from "../../actions/actions"
+import { useDispatch }  from "react-redux";
+import { getCategories, getPriority, getStatus } from "../../actions/actions"
 import DashboardMenu from "./DashboardMenu";
 import { DashboardDiv } from "../../hooks/index";
 
 
 const Dashboard = props => {
   const dispatch = useDispatch();
-useEffect(() => 
-dispatch(getCategories()), [dispatch]
+useEffect(() => {
+
+
+dispatch(getCategories());
+dispatch(getPriority());
+dispatch(getStatus());
+
+}, [dispatch]
 ) 
   return (
     <DashboardDiv>

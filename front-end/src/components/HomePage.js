@@ -6,10 +6,10 @@ const HomePage = () => {
         <div>
             <section className='initial-sign-in-page-section'>
                 <div>
-                    <h2>Welcome!</h2>
-                    <Link to='/Login'><button> Log In</button></Link>
-                    <Link to='/Registration'><button> Sign Up</button></Link>
-                    <Link to='/Registration'><p>Create an Account</p></Link>
+                    <h2>Welcome to DevDesk!</h2>
+                    <Link to='/Login'><button className='devdesk-sign-in-button'>Log In</button></Link>
+                    <Link to='/Registration'><button className='welcome-sign-in-button'>Sign Up</button></Link>
+                    <Link to='/Registration'><button>Create an Account</button></Link>
                 </div>
             </section>
         </div>

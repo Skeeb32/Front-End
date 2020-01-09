@@ -30,7 +30,7 @@ const NavBar = () => {
               <NavLink href="./Registration">Registratrion</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="./Events">Events</NavLink>
+              <NavLink href="https://github.com/DevDesk-Queue-2">Github</NavLink>
             </NavItem>
           </Nav>
         </Collapse>

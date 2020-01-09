@@ -38,10 +38,7 @@ class TicketItem extends Component {
             </p>
           </div>
           <div className="delete-item">
-            <i
-              onClick={() => this.props.deleteTicket(this.props.id)}
-              className="fas fa-trash"
-            />
+              <button onClick={() => this.props.deleteTicket(this.props.id)}>Delete</button>
           </div>
         </div>
         <div className="bottom-section">
