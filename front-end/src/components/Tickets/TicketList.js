@@ -1,8 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-
 import { ItemDiv } from "../../hooks";
-
 import TicketItem from "./TicketItem";
 import { getData, assignTicket } from "../../actions/actions";
 import Dashboard from "../Dashboard/Dashboard";
@@ -17,11 +15,10 @@ class TicketList extends React.Component {
   };
 
   render() {
-    console.log(this.props.tickets);
     return (
       <Dashboard loggedUser={this.props.user}>
         <ItemDiv>
-          {this.props.tickets && Array.from(this.props.tickets).map(ticket => (
+          {this.props.tickets && this.props.tickets.tickets && Array.from(this.props.tickets.tickets).map(ticket => (
             <TicketItem
               key={ticket.id}
               id={ticket.id}

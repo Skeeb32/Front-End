@@ -25,8 +25,12 @@ import {
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
   SIGNUP_RESOLVED,
-  GET_USER,
-  GET_USER_FAIL
+  // GET_USER,
+  // GET_USER_FAIL,
+  FETCH_CATEGORIES_SUCCESS,
+  FETCH_PRIORITIES_SUCCESS,
+  FETCH_STATUS_SUCCESS,
+
 } from "../actions/actions";
 
 const initialState = {
@@ -52,11 +56,19 @@ const initialState = {
     username: ""
   },
 
-  categories: ["None", "React", "JavaScript", "HTML", "CSS"],
+  categories: [{id:1, category:"None"}, 
+  {id:2, category:"React"}, 
+  {id:3, category:"JavaScript"}, 
+  ],
   tickets: [],
-  isAdmin: false
-};
+  isAdmin: false,
 
+
+// priorities: [],
+// priorities
+
+// statusList: [], 
+};
 const reducers = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_DATA_START:
@@ -243,16 +255,25 @@ const reducers = (state = initialState, action) => {
         ...state,
         error: action.payload
       };
-    case GET_USER:
-      return {
-        ...state,
-        users: ``
-      };
-    case GET_USER_FAIL:
-      return {
-        ...state,
-        error: action.payload
-      };
+
+     case FETCH_CATEGORIES_SUCCESS:
+       console.log(action.payload)
+       return {
+         ...state,
+         categories: action.payload.categories
+       };
+      case FETCH_PRIORITIES_SUCCESS:
+        console.log(action.payload)
+        return {
+          ...state,
+          priority_level: action.payload.priority_level
+        };
+      case FETCH_STATUS_SUCCESS:
+          console.log(action.payload)
+          return {
+            ...state,
+            statusList: action.payload.statusList
+          };
     default:
       return state;
   }

@@ -35,6 +35,7 @@ class TicketForm extends Component {
   };
 
   render() {
+    console.log(this.props.categories)
     return (
       <Dashboard>
         <TicketH1>Submit A Ticket</TicketH1>
@@ -52,8 +53,8 @@ class TicketForm extends Component {
           <div className="field">
             <label htmlFor="category"> Category:</label>
             <select onChange={this.handleChange} name="category" id="category">
-              {this.props.categories.map((category, i) => (
-                <option key={i}>{category}</option>
+              {this.props.categories && this.props.categories.map((category) => (
+                <option key={category.id}>{category.category}</option>
               ))}
             </select>
           </div>

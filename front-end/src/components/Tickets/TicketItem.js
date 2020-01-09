@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { deleteTicket, getUser } from "../../actions/actions";
+import { deleteTicket } from "../../actions/actions";
 
 class TicketItem extends Component {
   excerptHelper = text => {
@@ -13,7 +13,6 @@ class TicketItem extends Component {
     }
   };
   render() {
-    console.log(this.props.users);
     return (
       <div className="ticket-item">
         <div className="top-section">
@@ -72,7 +71,7 @@ class TicketItem extends Component {
               <p>Posted by: {this.props.user}</p>
             </div>
             <div>
-              <p>Topic: {this.props.category}</p>
+              {/* <p>Topic: {this.props.category}</p> */}
             </div>
             <div>
               <p>{this.props.assigned ? "Assigned" : "Not Assigned"}</p>
@@ -83,7 +82,6 @@ class TicketItem extends Component {
     );
   }
   componentDidMount() {
-    this.props.getUser(this.props.createdBy);
   }
 }
 
@@ -96,5 +94,5 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(
   mapStateToProps,
-  { deleteTicket, getUser }
+  { deleteTicket }
 )(TicketItem);

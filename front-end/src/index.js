@@ -9,15 +9,16 @@ import rootReducer from "./reducers";
 import { setToken } from "./utils/token";
 import { loadState, saveState } from "./hooks/useLocalStorage";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const persistedState = loadState();
 
 const store = createStore(
   rootReducer,
   persistedState,
-  applyMiddleware(thunk, setToken)
-);
+  composeWithDevTools(applyMiddleware(thunk, setToken)),
+  
+ );
 
 store.subscribe(() => {
   saveState({
