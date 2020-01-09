@@ -50,7 +50,6 @@ export const getData = () => dispatch => {
   axiosWithAuth()
     .get(`https://devdesk2-backend.herokuapp.com/api/tickets`)
     .then(res => {
-      console.log(res.data)
       dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -112,9 +111,10 @@ export const deleteTicket = id => dispatch => {
   axiosWithAuth()
     .delete(`https://devdesk2-backend.herokuapp.com/api/tickets/${id}`)
     .then(res => {
+      console.log("dispatch delete")
       dispatch({
         type: DELETE_TICKET_SUCCESS,
-        payload: res.data
+        payload: id
       });
     })
     .catch(err => {
@@ -181,63 +181,63 @@ export const signup = user => dispatch => {
     });
 };
 
-// export const GET_USER = "GET_USER";
-// export const GET_USER_FAIL = "GET_USER_FAIL";
-// export const getUser = id => dispatch => {
-//   axiosWithAuth()
-//     .get(`https://devdesk2-backend.herokuapp.com/api/user/register${id}`)
-//     .then(res => {
-//       dispatch({ type: GET_USER, payload: res.data.username });
-//     })
-//     .catch(err => {
-//       dispatch({ type: GET_USER_FAIL, payload: err });
-//     });
-// };
+export const GET_USER = "GET_USER";
+export const GET_USER_FAIL = "GET_USER_FAIL";
+export const getUser = id => dispatch => {
+  axiosWithAuth()
+    .get(`https://devdesk2-backend.herokuapp.com/api/user/register${id}`)
+    .then(res => {
+      dispatch({ type: GET_USER, payload: res.data.username });
+    })
+    .catch(err => {
+      dispatch({ type: GET_USER_FAIL, payload: err });
+    });
+};
 
 
 // Action to fetch list of categories available
 
-export const FETCH_CATEGORIES_START = "FETCH_CATEGORIES_START";
-export const FETCH_CATEGORIES_SUCCESS = "FETCH_CATEGORIES_SUCCESS";
-export const FETCH_CATEGORIES_FAIL = "FETCH_CATEGORIES_FAIL";
+export const CATEGORIES_START = "CATEGORIES_START";
+export const CATEGORIES_SUCCESS = "CATEGORIES_SUCCESS";
+export const CATEGORIES_FAIL = "CATEGORIES_FAIL";
 export const getCategories = () => dispatch => {
-  dispatch({ type: FETCH_CATEGORIES_START });
+  dispatch({ type: CATEGORIES_START });
   axiosWithAuth()
     .get(`https://devdesk2-backend.herokuapp.com/api/tickets/categories`)
     .then(res => {
-      dispatch({ type: FETCH_CATEGORIES_SUCCESS, payload: res.data });
+      dispatch({ type: CATEGORIES_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: FETCH_CATEGORIES_FAIL, payload: err });
+      dispatch({ type: CATEGORIES_FAIL, payload: err });
     });
 };
 
-export const FETCH_PRIORITIES_START = "FETCH_PRIORITIES_START";
-export const FETCH_PRIORITIES_SUCCESS = "FETCH_PRIORITIES_SUCCESS";
-export const FETCH_PRIORITIES_FAIL = "FETCH_PRIORITIES_FAIL";
+export const PRIORITIES_START = "PRIORITIES_START";
+export const PRIORITIES_SUCCESS = "PRIORITIES_SUCCESS";
+export const PRIORITIES_FAIL = "PRIORITIES_FAIL";
 export const getPriority = () => dispatch => {
-  dispatch({ type: FETCH_PRIORITIES_START });
+  dispatch({ type: PRIORITIES_START });
   axiosWithAuth()
-    .get(`https://devdesk2-backend.herokuapp.com/api/tickets/priorities/:id`)
+    .get(`https://devdesk2-backend.herokuapp.com/api/tickets/priorities`)
     .then(res => {
-      dispatch({ type: FETCH_PRIORITIES_SUCCESS, payload: res.data });
+      dispatch({ type: PRIORITIES_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: FETCH_PRIORITIES_FAIL, payload: err });
+      dispatch({ type: PRIORITIES_FAIL, payload: err });
     });
 };
 
-export const FETCH_STATUS_START = "FETCH_STATUS_START";
-export const FETCH_STATUS_SUCCESS = "FETCH_STATUS_SUCCESS";
-export const FETCH_STATUS_FAIL = "FETCH_STATUS_FAIL";
+export const STATUS_START = "STATUS_START";
+export const STATUS_SUCCESS = "STATUS_SUCCESS";
+export const STATUS_FAIL = "STATUS_FAIL";
 export const getStatus = () => dispatch => {
-  dispatch({ type: FETCH_STATUS_START });
+  dispatch({ type: STATUS_START });
   axiosWithAuth()
     .get(`https://devdesk2-backend.herokuapp.com/api/tickets/status`)
     .then(res => {
-      dispatch({ type: FETCH_STATUS_SUCCESS, payload: res.data });
+      dispatch({ type: STATUS_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: FETCH_STATUS_FAIL, payload: err });
+      dispatch({ type: STATUS_FAIL, payload: err });
     });
 };

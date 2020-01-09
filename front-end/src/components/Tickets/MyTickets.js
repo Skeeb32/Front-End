@@ -6,8 +6,7 @@ import { ItemDiv } from "../../hooks/index";
 import TicketItem from "./TicketItem";
 
 const test = props => {
-  console.log(Array.from(props.tickets.tickets))
-  Array.from(props.tickets.tickets).map(ticket => console.log(ticket) )
+  props.tickets && Array.from(props.tickets.tickets).map(ticket => console.log(ticket) )
   const ownedTickets = Array.from(props.tickets.tickets).filter(
     ticket => 
     ticket.user_id === props.user.id

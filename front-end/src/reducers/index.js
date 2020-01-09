@@ -27,9 +27,9 @@ import {
   SIGNUP_RESOLVED,
   // GET_USER,
   // GET_USER_FAIL,
-  FETCH_CATEGORIES_SUCCESS,
-  FETCH_PRIORITIES_SUCCESS,
-  FETCH_STATUS_SUCCESS,
+  CATEGORIES_SUCCESS,
+  PRIORITIES_SUCCESS,
+  STATUS_SUCCESS,
 
 } from "../actions/actions";
 
@@ -63,11 +63,48 @@ const initialState = {
   tickets: [],
   isAdmin: false,
 
+  priorities: [
+        {   
+            "id": 0,
+            "name": "Choose",
+            "level": "None"
+        },
+        {
+            "id": 1,
+            "name": "Low",
+            "level": 5
+        },
+        {
+            "id": 2,
+            "name": "Medium",
+            "level": 3
+        },
+        {
+            "id": 3,
+            "name": "High",
+            "level": 1
+        }
+    ],
 
-// priorities: [],
-// priorities
+statusList: [
+      {
+          "id": 0,
+          "status": "None"
+      },
+      {
+          "id": 1,
+          "status": "New"
+      },
+      {
+          "id": 2,
+          "status": "In Progress"
+      },
+      {
+          "id": 3,
+          "status": "Complete"
+      }
+  ]
 
-// statusList: [], 
 };
 const reducers = (state = initialState, action) => {
   switch (action.type) {
@@ -114,10 +151,12 @@ const reducers = (state = initialState, action) => {
         deletingTicket: true
       };
     case DELETE_TICKET_SUCCESS:
+      console.log(state)
+      const newTickets = state.tickets.tickets.filter(ticket => ticket.id !== action.payload)
       return {
         ...state,
         deletingTicket: false,
-        tickets: action.payload
+        tickets: {tickets: newTickets}
       };
     case DELETE_TICKET_FAIL:
       return {
@@ -256,20 +295,17 @@ const reducers = (state = initialState, action) => {
         error: action.payload
       };
 
-     case FETCH_CATEGORIES_SUCCESS:
-       console.log(action.payload)
+     case CATEGORIES_SUCCESS:
        return {
          ...state,
          categories: action.payload.categories
        };
-      case FETCH_PRIORITIES_SUCCESS:
-        console.log(action.payload)
+      case PRIORITIES_SUCCESS:
         return {
           ...state,
-          priority_level: action.payload.priority_level
+          priorities: action.payload.priorities
         };
-      case FETCH_STATUS_SUCCESS:
-          console.log(action.payload)
+      case STATUS_SUCCESS:
           return {
             ...state,
             statusList: action.payload.statusList

@@ -10,7 +10,9 @@ class TicketForm extends Component {
     ticket: {
       title: "",
       description: "",
-      category: "",
+      category_id: "",
+      priority_level: "",
+      status_id: "",
       resolved: false,
       assigned: false,
       user_id: this.props.user.user_id
@@ -23,6 +25,36 @@ class TicketForm extends Component {
     });
   };
 
+  handleCategoryChange = e => {
+    this.props.categories.filter( category => {
+      if (category.category === e.target.value) {
+        this.setState({
+          ticket: {...this.state.ticket, category_id: category.id}
+        })
+      }
+    })
+  };
+
+  handlePriorityChange = e => {
+    this.props.priorities.filter( priority => {
+      if (priority.name === e.target.value) {
+        this.setState({
+          ticket: {...this.state.ticket, priority_level: priority.level}
+        })
+      }
+    })
+  };
+
+  handleStatusChange = e => {
+    this.props.statusList.filter(status => {
+      if (status.status === e.target.value) {
+        this.setState({
+          ticket: {...this.state.ticket, status_id: status.id}
+        })
+      }
+    })
+  };
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.addTicket(this.state.ticket);
@@ -30,12 +62,14 @@ class TicketForm extends Component {
     this.setState({
       title: "",
       description: "",
-      user_id: ""
+      user_id: "",
+      category_id: "",
+      priority_level: "",
+      status_id: ""
     });
   };
 
   render() {
-    console.log(this.props.categories)
     return (
       <Dashboard>
         <TicketH1>Submit A Ticket</TicketH1>
@@ -52,9 +86,25 @@ class TicketForm extends Component {
           </div>
           <div className="field">
             <label htmlFor="category"> Category:</label>
-            <select onChange={this.handleChange} name="category" id="category">
+            <select onChange={this.handleCategoryChange} name="category" id="category">
               {this.props.categories && this.props.categories.map((category) => (
                 <option key={category.id}>{category.category}</option>
+              ))}
+            </select>
+          </div>
+          <div className="field">
+            <label htmlFor="priority"> Priority:</label>
+            <select onChange={this.handlePriorityChange} name="priority" id="priority_level">
+              {this.props.priorities && this.props.priorities.map((priorities) => (
+                <option key={priorities.id}>{priorities.name}</option>
+              ))}
+            </select>
+          </div>
+          <div className="status">
+            <label htmlFor="status"> Status:</label>
+            <select onChange={this.handleStatusChange} name="status" id="statusList">
+              {this.props.statusList && this.props.statusList.map(status => (
+                <option key={status.id}>{status.status}</option>
               ))}
             </select>
           </div>
@@ -79,7 +129,10 @@ const mapStateToProps = state => {
   return {
     tickets: state.tickets,
     user: state.user,
-    categories: state.categories
+    categories: state.categories,
+    priorities: state.priorities,
+    statusList: state.statusList
+
   };
 };
 
