@@ -14,7 +14,7 @@ const Card = props => {
       </div>
       <div className="profile-content">
         <p>
-           {props.user.firstName} {props.user.lastName}
+           {props.user.first_name} {props.user.last_name}
         </p>
         <p>{props.user.email}</p>
       </div>

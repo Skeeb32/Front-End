@@ -100,7 +100,7 @@ class TicketForm extends Component {
               ))}
             </select>
           </div>
-          <div className="status">
+          <div className="field">
             <label htmlFor="status"> Status:</label>
             <select onChange={this.handleStatusChange} name="status" id="statusList">
               {this.props.statusList && this.props.statusList.map(status => (

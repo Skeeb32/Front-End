@@ -18,7 +18,7 @@ class Logout extends React.Component {
       return <Redirect to='/' push={true}/>;
     }
 
-  return <button onClick={this.logoutBtn}>Logout</button>
+  return <button className="logout" onClick={this.logoutBtn}>Logout</button>
 
   }
 }

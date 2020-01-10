@@ -181,18 +181,18 @@ export const signup = user => dispatch => {
     });
 };
 
-export const GET_USER = "GET_USER";
-export const GET_USER_FAIL = "GET_USER_FAIL";
-export const getUser = id => dispatch => {
-  axiosWithAuth()
-    .get(`https://devdesk2-backend.herokuapp.com/api/user/register${id}`)
-    .then(res => {
-      dispatch({ type: GET_USER, payload: res.data.username });
-    })
-    .catch(err => {
-      dispatch({ type: GET_USER_FAIL, payload: err });
-    });
-};
+// export const GET_USER = "GET_USER";
+// export const GET_USER_FAIL = "GET_USER_FAIL";
+// export const getUser = id => dispatch => {
+//   axiosWithAuth()
+//     .get(`https://devdesk2-backend.herokuapp.com/api/user/register${id}`)
+//     .then(res => {
+//       dispatch({ type: GET_USER, payload: res.data.username });
+//     })
+//     .catch(err => {
+//       dispatch({ type: GET_USER_FAIL, payload: err });
+//     });
+// };
 
 
 // Action to fetch list of categories available

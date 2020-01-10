@@ -37,7 +37,7 @@ class TicketItem extends Component {
               {this.excerptHelper(this.props.description)}
             </p>
           </div>
-          <div className="delete-item">
+          <div className="field">
               <button onClick={() => this.props.deleteTicket(this.props.id)}>Delete</button>
           </div>
         </div>
