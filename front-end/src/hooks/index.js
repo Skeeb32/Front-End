@@ -236,6 +236,28 @@ export const DashNav = styled.nav`
   }
 `;
 
+export const DashNav2 = styled.nav`
+  color: #2430cd;
+  text-align: center;
+  li {
+    cursor: pointer;
+    padding: 1rem 0;
+    border: 1px solid #2430cd;
+    border-radius: 4px;
+    margin: 0 auto;
+    width: 95%;
+    margin-bottom: 5px;
+    background: crimson;
+    :hover {
+      background: lightgrey;
+    }
+  }
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+`;
+
 // Styles for TicketItem
 export const ItemDiv = styled.div`
   display: grid;

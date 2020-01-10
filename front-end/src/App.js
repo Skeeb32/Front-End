@@ -27,7 +27,7 @@ function App() {
           component={props => <TicketForm {...props} />}
         />
         <PrivateRoute path="/my-tickets" component={MyTickets} />
-        <PrivateRoute path="/edit/:id" component={Edit} />
+        <PrivateRoute path="/edits/:id" component={Edit} />
         <PrivateRoute exact path="/tickets" component={TicketViews} />
         <Route path="/Registration" component={Registration} />
     </Router>

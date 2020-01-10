@@ -9,10 +9,10 @@ import { resolveTicket } from "../../actions/actions";
 import Dashboard from "../Dashboard/Dashboard";
 
 const TicketCard = props => {
-  const ticket = props.tickets.find(
+  const ticket = props.tickets.tickets.find(
     ticket => `${ticket.id}` === props.match.params.id
   );
-
+  console.log(props);
   return (
     <Dashboard>
       <CardDiv>

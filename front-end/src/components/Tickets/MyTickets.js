@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { deleteTicket } from "../../actions/actions";
+import { deleteTicket, editTicket } from "../../actions/actions";
 import Dashboard from "../Dashboard/Dashboard";
 import { ItemDiv } from "../../hooks/index";
 import TicketItem from "./TicketItem";
@@ -70,5 +70,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { deleteTicket }
+  { deleteTicket, editTicket }
 )(test);

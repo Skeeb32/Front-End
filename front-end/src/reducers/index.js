@@ -170,16 +170,14 @@ const reducers = (state = initialState, action) => {
         error: "",
         updatingTicket: true
       };
-    case EDIT_TICKET_SUCCESS:
-      return {
-        ...state,
-        tickets: state.tickets.map(ticket => {
-          if (Number(ticket.id) === Number(action.id)) {
-            ticket = action.payload;
-          }
-          return ticket;
-        })
-      };
+      case EDIT_TICKET_SUCCESS:
+        console.log(state)
+        const editTickets = state.tickets.tickets.filter(ticket => ticket.id !== action.payload)
+        return {
+          ...state,
+          editingTicket: false,
+          tickets: {tickets: editTickets}
+        };
     case EDIT_TICKET_FAIL:
       return {
         ...state,
