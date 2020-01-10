@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { deleteTicket } from "../../actions/actions";
+import { deleteTicket, editTicket } from "../../actions/actions";
 
 class TicketItem extends Component {
   excerptHelper = text => {
@@ -39,6 +39,9 @@ class TicketItem extends Component {
           </div>
           <div className="field">
               <button onClick={() => this.props.deleteTicket(this.props.id)}>Delete</button>
+          </div>
+          <div className="field">
+              <button onClick={() => this.props.editTicket(this.props.id)}>Edit</button>
           </div>
         </div>
         <div className="bottom-section">
@@ -91,5 +94,5 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(
   mapStateToProps,
-  { deleteTicket }
+  { deleteTicket, editTicket }
 )(TicketItem);

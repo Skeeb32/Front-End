@@ -2,11 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { DashNav } from "../../hooks/index";
+import { DashNav, DashNav2 } from "../../hooks/index";
 import ProfileCard from "./Card";
 
 const DashboardMenu = props => {
   return (
+    <section>
     <DashNav className="dash-panel">
       <ProfileCard user={props.user} />
       <ul>
@@ -21,6 +22,17 @@ const DashboardMenu = props => {
         </Link>
       </ul>
     </DashNav>
+        <DashNav2 className="dash-panel-two">
+        <ul>
+          <Link to="/tickets">
+            <li>I'm a student</li>
+          </Link>
+          <Link to="/tickets">
+            <li>I'm a helper</li>
+          </Link>
+        </ul>
+      </DashNav2>
+    </section>
   );
 };
 
