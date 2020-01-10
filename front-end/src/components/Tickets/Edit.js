@@ -46,9 +46,9 @@ class Edit extends Component {
           <div className="field">
             <label htmlFor="category">Category: </label>
             <select onChange={this.handleChange} name="category" id="">
-              {this.props.categories.map(category => (
-                <option key={category} value={this.state.category}>
-                  {category}
+              {this.props.categories.map(id => (
+                <option key={this.state.id} value={this.state.id}>
+                  {this.state.id}
                 </option>
               ))}
             </select>
@@ -67,7 +67,7 @@ class Edit extends Component {
     );
   }
   componentDidMount() {
-    const ticket = this.props.tickets.find(
+    const ticket = this.props.tickets.tickets.find(
       ticket => `${ticket.id}` === this.props.match.params.id
     );
     this.setState({
