@@ -10,6 +10,8 @@ import {
   NavLink,
 } from "reactstrap";
 
+import Logout from "./Logout";
+
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -30,9 +32,10 @@ const NavBar = () => {
               <NavLink href="./Registration">Registratrion</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://github.com/DevDesk-Queue-2">Github</NavLink>
+              <NavLink href="https://github.com/DevDesk-Queue-2" target="_blank">Github</NavLink>
             </NavItem>
           </Nav>
+          < Logout />
         </Collapse>
       </Navbar>
 
